@@ -49,6 +49,19 @@ export class User {
 	@prop({ required: true })
 	password: string;
 
+	@prop({ lowercase: true, required: true, index: true })
+	type: string;
+
+	@prop({ required: true })
+	phone_number: string;
+
+	@prop({ required: true })
+	address: string;
+
+	birth_date: string;
+
+	profile_img_path: string;
+
 	@prop({ default: false })
 	verified: boolean;
 

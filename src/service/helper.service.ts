@@ -1,17 +1,17 @@
-import { HelperModel, Helper } from "../db/helpers.db";
+import { UserModel, User } from "../db/users.db";
 
-export function createHelper(input: Partial<Helper>) {
-	return HelperModel.create(input);
+export function createUser(input: Partial<User>) {
+	return UserModel.create({ ...input, type: "helper" });
 }
 
 export function findHelperById(id: string) {
-	return HelperModel.findById(id);
+	return UserModel.findById(id);
 }
 
 export function findHelperByEmail(email: string) {
-	return HelperModel.findOne({ email });
+	return UserModel.findOne({ email });
 }
 
-export function findHelperByIDAndUpdate(id: string, update: Partial<Helper>) {
-	return HelperModel.findByIdAndUpdate(id, update);
+export function findHelperByIDAndUpdate(id: string, update: Partial<User>) {
+	return UserModel.findByIdAndUpdate(id, update);
 }
