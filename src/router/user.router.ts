@@ -4,7 +4,7 @@ import {
 	updateUserSchema,
 } from "../schema/user.schema";
 import express from "express";
-import validateResource from "../middleware/validateUser";
+import validateResource from "../middleware/validate";
 import {
 	createUserHandler,
 	updateUserHandler,
