@@ -17,7 +17,7 @@ export async function createUserHandler(
 		res.status(200).send("User successfully created");
 		return;
 	} catch (e: unknown) {
-		res.status(409).send("Account already exists");
+		res.status(400).send(e);
 		console.error(e);
 	}
 }

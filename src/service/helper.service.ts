@@ -1,6 +1,6 @@
 import { UserModel, User } from "../db/users.db";
 
-export function createUser(input: Partial<User>) {
+export function createHelper(input: Partial<User>) {
 	return UserModel.create({ ...input, type: "helper" });
 }
 

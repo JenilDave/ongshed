@@ -23,6 +23,12 @@ export const createHelperSchema = object({
 		email: string({
 			required_error: "Email is required",
 		}).email("Not a valid email"),
+		phone_number: string({
+			required_error: "Phone number is required",
+		}).min(10, "Not a valid phone number"),
+		birth_date: string({
+			required_error: "Date of Birth is required",
+		}).date("Not valid Date"),
 	}).refine((data) => data.password === data.passwordConfirmation, {
 		message: "Passwords do not match",
 		path: ["passwordConfirmation"],

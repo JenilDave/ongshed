@@ -1,7 +1,7 @@
 import { UserModel, User } from "../db/users.db";
 
 export function createUser(input: Partial<User>) {
-	return UserModel.create(input);
+	return UserModel.create({ ...input, type: "user" });
 }
 
 export function findUserById(id: string) {
