@@ -55,11 +55,17 @@ export class User {
 	@prop({ required: true })
 	phone_number: string;
 
+	@prop()
 	address: string;
 
+	@prop()
 	birth_date: string;
 
+	@prop()
 	profile_img_path: string;
+
+	@prop()
+	passwordResetCode: string | null;
 
 	@prop({ default: false })
 	verified: boolean;

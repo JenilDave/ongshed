@@ -9,3 +9,4 @@ export const MONGO_SERVER: string = process.env.MONGO_SERVER || "localhost";
 export const SERVER_PORT: number = parseInt(process.env.PORT || "3000");
 export const MONGO_PORT: number = parseInt(process.env.PORT || "27017");
 export const LOG_LEVEL: string = process.env.LOG_LEVEL || "dev";
+export const SMTP_FROM_EMAIL: string = process.env.SMTP_FROM_EMAIL || "";
