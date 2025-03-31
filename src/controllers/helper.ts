@@ -5,6 +5,7 @@ import {
 	findHelperById,
 	findHelperByIDAndUpdate,
 } from "../service/helper.service";
+import { logger } from "../utils/logger.utils";
 
 export async function createHelperHandler(
 	req: Request<object, object, CreateHelperInput>,
@@ -15,10 +16,9 @@ export async function createHelperHandler(
 	try {
 		await createHelper(body);
 		res.status(200).send("Helper successfully created");
-		return;
 	} catch (e: unknown) {
-		res.status(409).send("Account already exists");
-		console.error(e);
+		logger.error(e);
+		res.status(500).send("Account already exists");
 	}
 }
 

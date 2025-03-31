@@ -6,6 +6,7 @@ import {
 	MONGO_SERVER,
 	MONGO_USERNAME,
 } from "./constants.utils";
+import { logger } from "./logger.utils";
 
 const mongo_connection_url = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_SERVER}.${MONGO_API_DOMAIN}/${MONGO_DBNAME}`;
 
@@ -15,12 +16,13 @@ const connect_mongodb = () => {
 
 export const setup_db_connection = () =>
 	new Promise(async (resolve, reject) => {
-		try {
-			connect_mongodb().then(() => {
+		connect_mongodb()
+			.then(() => {
 				resolve(true);
+			})
+			.catch((e) => {
+				logger.error("Cannot Connect to MongoDB");
+				logger.error(e);
+				reject(e);
 			});
-		} catch (e) {
-			console.error(e);
-			reject(e);
-		}
 	});
