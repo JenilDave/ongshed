@@ -4,9 +4,8 @@ import {
 	prop,
 	Severity,
 	pre,
-	DocumentType,
 } from "@typegoose/typegoose";
-import { verifyPassword, hashPassword } from "../utils/hash.utils";
+import { hashPassword } from "../utils/hash.utils";
 import mongoose from "mongoose";
 
 export const privateFields = [
@@ -46,7 +45,7 @@ export class User {
 	@prop({ required: true })
 	lastName: string;
 
-	@prop({ required: true })
+	@prop({ required: true, select: false })
 	password: string;
 
 	@prop({ lowercase: true, required: true, index: true })
@@ -61,26 +60,17 @@ export class User {
 	@prop()
 	birth_date: string;
 
-	@prop()
+	@prop({ select: false })
 	profile_img_path: string;
 
-	@prop()
+	@prop({ select: false })
 	passwordResetCode: string | null;
 
-	@prop({ default: false })
-	verified: boolean;
+	@prop({ select: false })
+	verificationCode: string | null;
 
-	async validatePassword(
-		this: DocumentType<User>,
-		candidatePassword: string
-	) {
-		try {
-			return await verifyPassword(this.password, candidatePassword);
-		} catch (e) {
-			console.error(e, "Could not validate password");
-			return false;
-		}
-	}
+	@prop({ default: false, select: false })
+	verified: boolean;
 }
 
 export const UserModel = mongoose.models.User || getModelForClass(User);
