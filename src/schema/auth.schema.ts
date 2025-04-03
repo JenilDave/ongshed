@@ -1,4 +1,5 @@
 import { object, string, TypeOf } from "zod";
+import { ObjectIdSchema } from "./common.schema";
 
 export const loginUserSchema = object({
 	body: object({
@@ -22,7 +23,7 @@ export const forgotPasswordSchema = object({
 
 export const resetPasswordSchema = object({
 	params: object({
-		id: string(),
+		id: ObjectIdSchema,
 		passwordResetCode: string(),
 	}),
 	body: object({

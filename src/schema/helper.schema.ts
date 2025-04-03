@@ -1,4 +1,5 @@
 import { object, string, TypeOf } from "zod";
+import { ObjectIdSchema } from "./common.schema";
 
 export const getHelperSchema = object({
 	params: object({
@@ -37,9 +38,7 @@ export const createHelperSchema = object({
 
 export const updateHelperSchema = object({
 	body: object({
-		id: string({
-			required_error: "id is required",
-		}),
+		id: ObjectIdSchema,
 		data: object({}),
 	}),
 });

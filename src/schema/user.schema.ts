@@ -1,8 +1,9 @@
 import { object, string, TypeOf } from "zod";
+import { ObjectIdSchema } from "./common.schema";
 
 export const getUserSchema = object({
 	params: object({
-		id: string(),
+		id: ObjectIdSchema,
 	}),
 });
 
@@ -37,16 +38,14 @@ export const createUserSchema = object({
 
 export const updateUserSchema = object({
 	body: object({
-		id: string({
-			required_error: "id is required",
-		}),
+		id: ObjectIdSchema,
 		data: object({}),
 	}),
 });
 
 export const verifyUserSchema = object({
 	params: object({
-		id: string(),
+		id: ObjectIdSchema,
 		verificationCode: string(),
 	}),
 });
@@ -61,7 +60,7 @@ export const forgotPasswordSchema = object({
 
 export const resetPasswordSchema = object({
 	params: object({
-		id: string(),
+		id: ObjectIdSchema,
 		passwordResetCode: string(),
 	}),
 	body: object({
