@@ -1,7 +1,7 @@
 import { object, string, TypeOf } from "zod";
 import { ObjectIdSchema } from "./common.schema";
 
-export const loginUserSchema = object({
+export const createSessionSchema = object({
 	body: object({
 		password: string({
 			required_error: "Password is required",
@@ -9,9 +9,8 @@ export const loginUserSchema = object({
 		email: string({
 			required_error: "Email is required",
 		}).email("Not a valid email"),
-	})
+	}),
 });
-
 
 export const forgotPasswordSchema = object({
 	body: object({
@@ -42,3 +41,5 @@ export const resetPasswordSchema = object({
 export type ForgotPasswordInput = TypeOf<typeof forgotPasswordSchema>["body"];
 
 export type ResetPasswordInput = TypeOf<typeof resetPasswordSchema>;
+
+export type CreateSessionInput = TypeOf<typeof createSessionSchema>["body"];

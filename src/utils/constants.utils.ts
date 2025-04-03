@@ -10,3 +10,7 @@ export const SERVER_PORT: number = parseInt(process.env.PORT || "3000");
 export const MONGO_PORT: number = parseInt(process.env.PORT || "27017");
 export const LOG_LEVEL: string = process.env.LOG_LEVEL || "dev";
 export const SMTP_FROM_EMAIL: string = process.env.SMTP_FROM_EMAIL || "";
+export const ACCESS_TOKEN_PRIVATE_KEY_FILE: string = process.env.ACCESS_TOKEN_PRIVATE_KEY_FILE || "";
+export const ACCESS_TOKEN_PUBLIC_KEY_FILE: string = process.env.ACCESS_TOKEN_PUBLIC_KEY_FILE || "";
+export const REFRESH_TOKEN_PRIVATE_KEY_FILE: string = process.env.REFRESH_TOKEN_PRIVATE_KEY_FILE || "";
+export const REFRESH_TOKEN_PUBLIC_KEY_FILE: string = process.env.REFRESH_TOKEN_PUBLIC_KEY_FILE || "";

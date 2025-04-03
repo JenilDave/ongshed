@@ -6,8 +6,8 @@ import auth from "./auth.router";
 const router = express.Router();
 
 export default (): express.Router => {
+	auth(router);
 	user(router);
 	helper(router);
-	auth(router);
 	return router;
 };
