@@ -7,6 +7,7 @@ import {
 } from "@typegoose/typegoose";
 import { hashPassword } from "../utils/hash.utils";
 import mongoose from "mongoose";
+import { nanoid } from "nanoid";
 
 export const privateFields = [
 	"password",
@@ -25,6 +26,10 @@ export const privateFields = [
 
 	this.password = hash;
 
+    if (this.isNew) {
+        this.id = nanoid()
+    }
+
 	return;
 })
 @modelOptions({
@@ -36,6 +41,9 @@ export const privateFields = [
 	},
 })
 export class User {
+	@prop({ lowercase: true, required: false, unique: true })
+	id: string;
+
 	@prop({ required: true })
 	firstName: string;
 

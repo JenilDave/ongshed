@@ -19,7 +19,7 @@ export function signJwt(
 				? ACCESS_TOKEN_PRIVATE_KEY_FILE
 				: REFRESH_TOKEN_PRIVATE_KEY_FILE
 		);
-		return jwt.sign(object, privateKey, {
+		return jwt.sign({ ...object }, privateKey, {
 			...(options && options),
 			algorithm: "RS256",
 		});

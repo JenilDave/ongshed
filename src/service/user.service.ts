@@ -17,12 +17,14 @@ export function findUserByIDAndUpdate(id: string, update: Partial<User>) {
 	return UserModel.findByIdAndUpdate(id, update);
 }
 
-export function validatePassword(email: string, password: string) {
+export function validatePassword(email: string, pass: string) {
 	return UserModel.findOne({ email })
 		.select("+password")
 		.then(async (user) => {
-			const res = await verifyPassword(user.password, password);
-			return res ? user : null;
+			const res = await verifyPassword(user.password, pass);
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			const { password, _id, ...userDetails } = user.toJSON();
+			return res ? userDetails : null;
 		})
 		.catch(() => {
 			return null;
