@@ -13,7 +13,7 @@ import {
 
 export default (router: express.Router) => {
 	router.post(
-		"/api/users",
+		"/users",
 		validateResource(createUserSchema),
 		createUserHandler
 	);

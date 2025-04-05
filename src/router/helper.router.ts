@@ -13,7 +13,7 @@ import {
 
 export default (router: express.Router) => {
 	router.post(
-		"/api/helpers",
+		"/helpers",
 		validateResource(createHelperSchema),
 		createHelperHandler
 	);
