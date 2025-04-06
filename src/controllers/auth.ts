@@ -164,7 +164,6 @@ export async function refreshAccessTokenHandler(req: Request, res: Response) {
 			}
 
 			const { _doc, ...user } = await findUserById(session.id);
-			console.log(_doc);
 
 			if (!user) {
 				res.status(401).send(

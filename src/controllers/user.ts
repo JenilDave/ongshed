@@ -5,6 +5,7 @@ import {
 	findUserById,
 	findUserByIDAndUpdate,
 } from "../service/user.service";
+import { logger } from "../utils/logger.utils";
 
 export async function createUserHandler(
 	req: Request<object, object, CreateUserInput>,
@@ -18,7 +19,7 @@ export async function createUserHandler(
 		return;
 	} catch (e: unknown) {
 		res.status(400).send(e);
-		console.error(e);
+		logger.error(e);
 	}
 }
 

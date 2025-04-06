@@ -1,4 +1,5 @@
 import { argon2id, verify, hash } from "argon2";
+import { logger } from "./logger.utils";
 
 const ARGON_CONFIG = {
 	type: argon2id, // Use Argon2id variant
@@ -13,7 +14,7 @@ export const verifyPassword = (hashed_pass: string, pass: string) =>
 			const valid = await verify(hashed_pass, pass);
 			resolve(valid);
 		} catch (e) {
-			console.error(e);
+			logger.error(e);
 			reject(e);
 		}
 	});
