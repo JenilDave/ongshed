@@ -18,17 +18,25 @@ export async function createUserHandler(
 		res.status(200).send("User successfully created");
 		return;
 	} catch (e: unknown) {
-		res.status(400).send(e);
+		res.status(500).send(e);
 		logger.error(e);
 	}
 }
 
 export async function getUserHandler(req: Request, res: Response) {
 	const user = await findUserById(req.params.id);
+	if (!user) {
+		res.sendStatus(404);
+		return;
+	}
 	res.status(200).send(user);
 }
 
 export async function updateUserHandler(req: Request, res: Response) {
 	const updatedUser = await findUserByIDAndUpdate(req.body.id, req.body.data);
+	if (!updatedUser) {
+		res.sendStatus(404);
+		return;
+	}
 	res.status(200).send(updatedUser);
 }

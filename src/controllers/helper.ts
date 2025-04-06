@@ -18,12 +18,16 @@ export async function createHelperHandler(
 		res.status(200).send("Helper successfully created");
 	} catch (e: unknown) {
 		logger.error(e);
-		res.status(500).send("Account already exists");
+		res.sendStatus(409);
 	}
 }
 
 export async function getHelperHandler(req: Request, res: Response) {
 	const helper = await findHelperById(req.params.id);
+	if (!helper) {
+		res.sendStatus(404);
+		return;
+	}
 	res.status(200).send(helper);
 }
 
@@ -32,5 +36,9 @@ export async function updateHelperHandler(req: Request, res: Response) {
 		req.body.id,
 		req.body.data
 	);
+	if (!updatedHelper) {
+		res.sendStatus(404);
+		return;
+	}
 	res.status(200).send(updatedHelper);
 }
