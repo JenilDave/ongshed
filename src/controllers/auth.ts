@@ -148,25 +148,32 @@ export async function refreshAccessTokenHandler(req: Request, res: Response) {
 		if (grant) {
 			const refreshToken = req["body"][`${grant}`];
 			if (!refreshToken) {
-				res.status(401).send("Could not refresh access token");
+				res.status(401).send(
+					"Could not refresh access token. No refresh Token"
+				);
 				return;
 			}
 
 			const session = verifyJwt<User>(refreshToken, "refresh");
 
 			if (!session) {
-				res.status(401).send("Could not refresh access token");
+				res.status(401).send(
+					"Could not refresh access token. Invalid Token"
+				);
 				return;
 			}
 
-			const user = await findUserByEmail(session.email);
+			const { _doc, ...user } = await findUserById(session.id);
+			console.log(_doc);
 
 			if (!user) {
-				res.status(401).send("Could not refresh access token");
+				res.status(401).send(
+					"Could not refresh access token. Invalid User"
+				);
 				return;
 			}
 
-			const accessToken = signAccessToken(user);
+			const accessToken = signAccessToken(_doc);
 
 			res.send({ accessToken });
 			return;

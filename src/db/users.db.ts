@@ -26,9 +26,9 @@ export const privateFields = [
 
 	this.password = hash;
 
-    if (this.isNew) {
-        this.id = nanoid()
-    }
+	if (this.isNew) {
+		this.id = nanoid();
+	}
 
 	return;
 })
@@ -41,7 +41,7 @@ export const privateFields = [
 	},
 })
 export class User {
-	@prop({ lowercase: true, required: false, unique: true })
+	@prop({ required: false, unique: true })
 	id: string;
 
 	@prop({ required: true })
