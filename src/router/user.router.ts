@@ -19,7 +19,7 @@ export default (router: express.Router) => {
 	);
 
 	router.get(
-		"/api/users/:id",
+		"/api/users",
 		validateResource(getUserSchema),
 		getUserHandler
 	);

@@ -36,7 +36,7 @@ export const createSessionHandler = async (
 		const accessToken = signAccessToken(user);
 
 		// sign a refresh token
-		const refreshToken = await signRefreshToken({ userId: user._id });
+		const refreshToken = await signRefreshToken({ userId: user.id });
 
 		// send the tokens
 
@@ -89,7 +89,7 @@ export async function forgotPasswordHandler(
 				},
 				Body: {
 					Text: {
-						Data: `Password Reset => ID :- ${user._id} || CODE: ${user.passwordResetCode}`,
+						Data: `Password Reset => ID :- ${user.id} || CODE: ${user.passwordResetCode}`,
 						Charset: "UTF-8",
 					},
 				},

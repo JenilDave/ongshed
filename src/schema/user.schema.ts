@@ -1,9 +1,10 @@
 import { object, string, TypeOf } from "zod";
-import { ObjectIdSchema } from "./common.schema";
 
 export const getUserSchema = object({
-	params: object({
-		id: ObjectIdSchema,
+	query: object({
+		id: string({
+			message: "id is required",
+		}),
 	}),
 });
 
@@ -38,14 +39,18 @@ export const createUserSchema = object({
 
 export const updateUserSchema = object({
 	body: object({
-		id: ObjectIdSchema,
+		id: string({
+			message: "id is required",
+		}),
 		data: object({}),
 	}),
 });
 
 export const verifyUserSchema = object({
-	params: object({
-		id: ObjectIdSchema,
+	query: object({
+		id: string({
+			message: "id is required",
+		}),
 		verificationCode: string(),
 	}),
 });
@@ -59,8 +64,10 @@ export const forgotPasswordSchema = object({
 });
 
 export const resetPasswordSchema = object({
-	params: object({
-		id: ObjectIdSchema,
+	query: object({
+		id: string({
+			message: "id is required",
+		}),
 		passwordResetCode: string(),
 	}),
 	body: object({
@@ -78,7 +85,7 @@ export const resetPasswordSchema = object({
 
 export type CreateUserInput = TypeOf<typeof createUserSchema>["body"];
 
-export type VerifyUserInput = TypeOf<typeof verifyUserSchema>["params"];
+export type VerifyUserInput = TypeOf<typeof verifyUserSchema>["query"];
 
 export type ForgotPasswordInput = TypeOf<typeof forgotPasswordSchema>["body"];
 

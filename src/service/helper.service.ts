@@ -5,7 +5,7 @@ export function createHelper(input: Partial<User>) {
 }
 
 export function findHelperById(id: string) {
-	return UserModel.findById(id);
+	return UserModel.findOne({ id });
 }
 
 export function findHelperByEmail(email: string) {
@@ -13,5 +13,5 @@ export function findHelperByEmail(email: string) {
 }
 
 export function findHelperByIDAndUpdate(id: string, update: Partial<User>) {
-	return UserModel.findByIdAndUpdate(id, update);
+	return UserModel.findOneAndUpdate({ id }, update);
 }

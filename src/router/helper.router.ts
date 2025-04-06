@@ -19,7 +19,7 @@ export default (router: express.Router) => {
 	);
 
 	router.get(
-		"/api/helpers/:id",
+		"/api/helpers",
 		validateResource(getHelperSchema),
 		getHelperHandler
 	);

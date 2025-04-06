@@ -22,7 +22,7 @@ export default (router: express.Router) => {
 	);
 
 	router.post(
-		"/api/users/resetpassword/:id/:passwordResetCode",
+		"/api/users/resetpassword",
 		validateResource(resetPasswordSchema),
 		resetPasswordHandler
 	);

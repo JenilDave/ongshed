@@ -1,5 +1,4 @@
 import { object, string, TypeOf } from "zod";
-import { ObjectIdSchema } from "./common.schema";
 
 export const getHelperSchema = object({
 	params: object({
@@ -38,14 +37,18 @@ export const createHelperSchema = object({
 
 export const updateHelperSchema = object({
 	body: object({
-		id: ObjectIdSchema,
+		id: string({
+			message: "id is required",
+		}),
 		data: object({}),
 	}),
 });
 
 export const verifyHelperSchema = object({
-	params: object({
-		id: string(),
+	query: object({
+		id: string({
+			message: "id is required",
+		}),
 		verificationCode: string(),
 	}),
 });
@@ -60,7 +63,9 @@ export const forgotPasswordSchema = object({
 
 export const resetPasswordSchema = object({
 	params: object({
-		id: string(),
+		id: string({
+			message: "id is required",
+		}),
 		passwordResetCode: string(),
 	}),
 	body: object({
@@ -78,7 +83,7 @@ export const resetPasswordSchema = object({
 
 export type CreateHelperInput = TypeOf<typeof createHelperSchema>["body"];
 
-export type VerifyHelperInput = TypeOf<typeof verifyHelperSchema>["params"];
+export type VerifyHelperInput = TypeOf<typeof verifyHelperSchema>["query"];
 
 export type ForgotPasswordInput = TypeOf<typeof forgotPasswordSchema>["body"];
 

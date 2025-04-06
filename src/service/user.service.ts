@@ -6,7 +6,7 @@ export function createUser(input: Partial<User>) {
 }
 
 export function findUserById(id: string) {
-	return UserModel.findById(id);
+	return UserModel.findOne({ id });
 }
 
 export function findUserByEmail(email: string) {
@@ -14,7 +14,7 @@ export function findUserByEmail(email: string) {
 }
 
 export function findUserByIDAndUpdate(id: string, update: Partial<User>) {
-	return UserModel.findByIdAndUpdate(id, update);
+	return UserModel.findOneAndUpdate({ id }, update);
 }
 
 export function validatePassword(email: string, pass: string) {
